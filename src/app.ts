@@ -3,9 +3,10 @@ import express from 'express';
 import cors from 'cors';
 
 import serverConfig from './config/server.config.js';
-function startServer() {
+import { databaseConnect } from './lib/db.js';
+async function startServer() {
+    await databaseConnect();
     const app = express();
-
     //middlewares
     app.use(express.urlencoded({ extended: false }));
     app.use(express.json());
